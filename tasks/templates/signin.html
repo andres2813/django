@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <style>
+        .login-form {
+            background: #f0f4f8;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+            color: #333;
+        }
+        .login-form h1 {
+            color: #1976d2;
+        }
+        .login-form button {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .login-form button:hover {
+            background: #1565c0;
+        }
+    </style>
+    <div class="row">
+       <div class="col-md-4 offset-md-4">
+            <form method="POST" class="card card-body login-form">
+                <h1 class="text-center">login cuenta </h1>
+                {{error}}
+                {% csrf_token %}
+                {{form.as_p}}
+              <button>
+                 iniciar sesión
+              </button>
+            </form>
+        </div>
+    </div>
+           
+    
+    
+   {% endblock %}
+  
+</main>
+
+ 

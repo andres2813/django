@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  .tareas-header {
+    text-align: center;
+    color: #1976d2;
+    font-size: 2.2rem;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+  }
+  .tareas-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+  }
+  .tarea-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.10);
+    padding: 24px 22px 18px 22px;
+    min-width: 270px;
+    max-width: 340px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    border-left: 6px solid #1976d2;
+    position: relative;
+  }
+  .tarea-card:hover {
+    box-shadow: 0 8px 32px rgba(25, 118, 210, 0.18);
+    transform: translateY(-4px) scale(1.03);
+  }
+  .tarea-card .titulo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1976d2;
+    margin-bottom: 8px;
+  }
+  .tarea-card .titulo.importante {
+    color: #d32f2f;
+  }
+  .tarea-card .descripcion {
+    color: #444;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+  .tarea-card .usuario {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .tarea-card .fecha {
+    font-size: 0.90rem;
+    color: #bdbdbd;
+    position: absolute;
+    bottom: 10px;
+    right: 18px;
+  }
+</style>
+
+{% if not completadas %}
+  <h1 class="tareas-header">Tareas Pendientes <span style="font-size:1.1rem; color:#444;">({{ tareas|length }})</span></h1>
+{% else %}
+  <h1 class="tareas-header">TAREAS FINALIZADAS <span style="font-size:1.1rem; color:#444;">({{ tareas|length }})</span></h1>
+{% endif %}
+
+<ul class="tareas-list">
+    {% for task in tareas %}
+    <li>
+        <a href="{% url 'task_detail' task.id %}" style="text-decoration:none;">
+          <div class="tarea-card">
+            <div class="titulo{% if task.importante %} importante{% endif %}">{{ task.titulo }}</div>
+            <div class="descripcion">{{ task.descripcion }}</div>
+            <div class="usuario">Usuario: {{ task.usuario.username }}</div>
+            {% if task.fechacompletada %}
+              <div class="fecha">Completada: {{ task.fechacompletada|date:'M j Y:i' }}</div>
+            {% endif %}
+          </div>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

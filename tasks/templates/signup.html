@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="container fondo-home">
+  <style>
+    .fondo-home {
+      background-image: url('{% static "images/led.jpeg" %}');
+      background-size: 700px auto;
+      background-position: center right;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      background-color: #f5f7fa;
+    }
+    .signup-form {
+      background: #fff;
+      border-radius: 12px;
+      padding: 35px 30px 25px 30px;
+      box-shadow: 0 6px 24px rgba(25, 118, 210, 0.10);
+      color: #222;
+      margin-top: 40px;
+      transition: box-shadow 0.3s;
+    }
+    .signup-form:hover {
+      box-shadow: 0 8px 32px rgba(25, 118, 210, 0.18);
+    }
+    .signup-form h1 {
+      color: #1976d2;
+      margin-bottom: 18px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    .signup-form button {
+      background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 17px;
+      width: 100%;
+      margin-top: 18px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
+      transition: background 0.2s;
+    }
+    .signup-form button:hover {
+      background: linear-gradient(90deg, #1565c0 0%, #1976d2 100%);
+    }
+    .signup-form input {
+      border: 1px solid #bdbdbd;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 12px;
+      width: 100%;
+      font-size: 15px;
+    }
+    .reminder {
+      background: #e3f2fd;
+      color: #1976d2;
+      border-left: 4px solid #1976d2;
+      padding: 10px 15px;
+      margin: 15px 0 10px 0;
+      border-radius: 5px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+  <div class="row">
+    <div class="col-md-4">
+      <form method="POST" class="card card-body text-center signup-form">
+      <h1>¡INSCRIBIRSE!</h1>
+      {{error}}
+      {% csrf_token %}
+      {{form}}
+      <div class="reminder">
+        <span>🔔 Recuerda completar todos los campos correctamente.</span>
+      </div>
+      <button>
+        Registrarse
+      </button>
+    </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
