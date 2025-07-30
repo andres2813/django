@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: django-crud-auth
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn djangocrud.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4 

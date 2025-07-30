@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key') #(listo)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ #(listo)
+DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = [] #(listo)
+ALLOWED_HOSTS = [] 
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -83,8 +83,7 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-
-DATABASES = { #(listo)
+DATABASES = {
     'default': dj_database_url.config(
         default='postgresql://postgres:postgres@localhost/postgres',
         conn_max_age=600
@@ -127,7 +126,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/' #(listo)
+STATIC_URL = '/static/' 
 
 
 if not DEBUG:
